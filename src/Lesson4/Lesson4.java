@@ -8,7 +8,7 @@ public class Lesson4 {
     private static Scanner scanner = new Scanner(System.in);
     private static Random random = new Random();
 
-    private static final int SIZE = 3;
+    private static final int SIZE = 5;
     private static final char DOT_EMPTY = '.';
     private static final char DOT_X = 'X';
     private static final char DOT_O = 'O';
@@ -119,4 +119,5 @@ public class Lesson4 {
         if (map[2][0] == val && map[1][1] == val && map[0][2] == val) return true;
         return false;
     }
-}
+
+    }
