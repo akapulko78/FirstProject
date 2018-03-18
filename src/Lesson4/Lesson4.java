@@ -9,6 +9,7 @@ public class Lesson4 {
     private static Random random = new Random();
 
     private static final int SIZE = 5;
+    private static final int DOT_TO_WIN = 4;
     private static final char DOT_EMPTY = '.';
     private static final char DOT_X = 'X';
     private static final char DOT_O = 'O';
@@ -50,7 +51,7 @@ public class Lesson4 {
         }
         printMap();
         --emptyFields;
-        return hasWinner(value);
+        return haswinner(value);
     }
 
     private static void printMap() {
@@ -78,15 +79,134 @@ public class Lesson4 {
         return emptyFields <= 0;
     }
 
-    private static void aiStep() {
-        int row;
-        int column;
-        do {
-            row = random.nextInt(SIZE);
-            column = random.nextInt(SIZE);
-        } while (!validate(row, column));
-        System.out.format("Компьютер совершил ход в ячейку %s %s %n", row, column);
-        map[row][column] = DOT_O;
+    private static boolean validate(int row, int column) {
+        return row >= 0 && row <= SIZE - 1
+                && column >= 0 && column <= SIZE - 1
+                && map[row][column] == DOT_EMPTY;
+    }
+
+    private static boolean haswinner(char value) {
+        return findMaxLengthForRows(value, true) >= DOT_TO_WIN ||
+                findMaxLengthForRows(value, false) >= DOT_TO_WIN ||
+                findMaxLengthForCenterDiagonal_1(value) >= DOT_TO_WIN ||
+                findMaxLengthForCenterDiagonal_2(value) >= DOT_TO_WIN ||
+                findMaxLengthForFarDiagonal_1(value) >= DOT_TO_WIN ||
+                findMaxLengthForFarDiagonal_2(value) >= DOT_TO_WIN ||
+                findMaxLengthForFarDiagonal_3(value) >= DOT_TO_WIN ||
+                findMaxLengthForFarDiagonal_4(value) >= DOT_TO_WIN;
+    }
+
+    private static int findMaxLengthForRow(int index, char val, boolean row) {
+        int currentLength = 0;
+        int maxLength = 0;
+        for (int i = 0; i < SIZE - 1; i++) {
+            char c = row ? map[index][i] : map[i][index];
+            if (c == val)
+                currentLength++;
+            else {
+                maxLength = Math.max(currentLength, maxLength);
+                currentLength = 0;
+            }
+        }
+        return Math.max(currentLength, maxLength);
+    }
+
+    private static int findMaxLengthForRows(char value, boolean row) {
+        int maxLength = 0;
+        for (int i = 0; i < SIZE - 1; i++) {
+            maxLength = Math.max(findMaxLengthForRow(i, value, row), maxLength);
+        }
+        return maxLength;
+    }
+
+    private static int findMaxLengthForCenterDiagonal_1(char value) {
+        int currentLength = 0;
+        int maxLength = 0;
+        for (int i = 0; i < SIZE - 1; i++) {
+            char c = map[i][i];
+            if (c == value)
+                currentLength++;
+            else {
+                maxLength = Math.max(currentLength, maxLength);
+                currentLength = 0;
+            }
+        }
+        return Math.max(currentLength, maxLength);
+    }
+
+    private static int findMaxLengthForCenterDiagonal_2(char value) {
+        int currentLength = 0;
+        int maxLength = 0;
+        for (int i = 0; i < SIZE - 1; i++) {
+            char c = map[i][SIZE - i - 1];
+            if (c == value)
+                currentLength++;
+            else {
+                maxLength = Math.max(currentLength, maxLength);
+                currentLength = 0;
+            }
+        }
+        return Math.max(currentLength, maxLength);
+    }
+
+    private static int findMaxLengthForFarDiagonal_1(char value) {
+        int currentLength = 0;
+        int maxLength = 0;
+        for (int i = 0; i < SIZE - 1; i++) {
+            char c = map[i + 1][i];
+            if (c == value)
+                currentLength++;
+            else {
+                maxLength = Math.max(currentLength, maxLength);
+                currentLength = 0;
+            }
+        }
+        return Math.max(currentLength, maxLength);
+    }
+
+    private static int findMaxLengthForFarDiagonal_2(char value) {
+        int currentLength = 0;
+        int maxLength = 0;
+        for (int i = 0; i < SIZE - 1; i++) {
+            char c = map[i][i + 1];
+            if (c == value)
+                currentLength++;
+            else {
+                maxLength = Math.max(currentLength, maxLength);
+                currentLength = 0;
+            }
+        }
+        return Math.max(currentLength, maxLength);
+    }
+
+    private static int findMaxLengthForFarDiagonal_3(char value) {
+        int currentLength = 0;
+        int maxLength = 0;
+        for (int i = 0; i < SIZE - 1; i++) {
+            char c = map[i][SIZE - i - 2];
+            if (c == value)
+                currentLength++;
+            else {
+                maxLength = Math.max(currentLength, maxLength);
+                currentLength = 0;
+            }
+        }
+        return Math.max(currentLength, maxLength);
+    }
+
+    private static int findMaxLengthForFarDiagonal_4(char value) {
+        int currentLength = 0;
+        int maxLength = 0;
+        for (int i = 0; i < SIZE - 1; i++) {
+            char c = map[i + 1][SIZE - i - 1];
+            if (c == value)
+                currentLength++;
+            else {
+                maxLength = Math.max(currentLength, maxLength);
+                currentLength = 0;
+            }
+        }
+        return Math.max(currentLength, maxLength);
     }
 
     private static void humanStep() {
@@ -101,23 +221,57 @@ public class Lesson4 {
         map[row][column] = DOT_X;
     }
 
-    private static boolean validate(int row, int column) {
-        return row >= 0 && row <= SIZE - 1
-                && column >= 0 && column <= SIZE - 1
-                && map[row][column] == DOT_EMPTY;
+    private static void aiStep() {
+        int row;
+        int column;
+        do {
+            row = random.nextInt(SIZE);
+            column = random.nextInt(SIZE);
+        } while (!validate(row, column));
+        System.out.format("Компьютер совершил ход в ячейку %s %s %n", row, column);
+        map[row][column] = DOT_O;
     }
 
-    private static boolean hasWinner(char val) {
-        //FIXME
-        if (map[0][0] == val && map[0][1] == val && map[0][2] == val) return true;
-        if (map[1][0] == val && map[1][1] == val && map[1][2] == val) return true;
-        if (map[2][0] == val && map[2][1] == val && map[2][2] == val) return true;
-        if (map[0][0] == val && map[1][0] == val && map[2][0] == val) return true;
-        if (map[0][1] == val && map[1][1] == val && map[2][1] == val) return true;
-        if (map[0][2] == val && map[1][2] == val && map[2][2] == val) return true;
-        if (map[0][0] == val && map[1][1] == val && map[2][2] == val) return true;
-        if (map[2][0] == val && map[1][1] == val && map[0][2] == val) return true;
-        return false;
-    }
+   /* private static void aiStepTag() {
 
-    }
+        int row = 0;
+        int column = 0;
+        boolean human_win = false;
+
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (!validate(i, j)) {
+                    map[i][j] = DOT_X;
+                    if (haswinner(DOT_X)) {
+                        row = i;
+                        column = j;
+                        human_win = true;
+                    }
+                    map[i][j] = DOT_EMPTY;
+                    System.out.format("Компьютер совершил ход в ячейку %s %s %n", row, column);
+                    map[row][column] = DOT_O;
+                }
+            }
+        }
+
+
+        if (human_win) {
+            int row2;
+            int column2;
+            do {
+                row2 = random.nextInt(SIZE);
+                column2 = random.nextInt(SIZE);
+            } while (!validate(row2, column2));
+            System.out.format("Компьютер совершил ход в ячейку %s %s %n", row2, column2);
+            map[row2][column2] = DOT_O;
+        }
+    }*/
+
+
+}
+
+
+ /*
+    */
+
+
