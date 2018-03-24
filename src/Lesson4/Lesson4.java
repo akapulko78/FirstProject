@@ -222,56 +222,33 @@ public class Lesson4 {
     }
 
     private static void aiStep() {
-        int row;
-        int column;
-        do {
-            row = random.nextInt(SIZE);
-            column = random.nextInt(SIZE);
-        } while (!validate(row, column));
-        System.out.format("Компьютер совершил ход в ячейку %s %s %n", row, column);
-        map[row][column] = DOT_O;
-    }
-
-   /* private static void aiStepTag() {
-
         int row = 0;
         int column = 0;
-        boolean human_win = false;
+        boolean human_WIN = false;
 
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 if (!validate(i, j)) {
-                    map[i][j] = DOT_X;
+                    map[row][column] = DOT_X;
                     if (haswinner(DOT_X)) {
                         row = i;
                         column = j;
-                        human_win = true;
+                        human_WIN = true;
                     }
-                    map[i][j] = DOT_EMPTY;
-                    System.out.format("Компьютер совершил ход в ячейку %s %s %n", row, column);
-                    map[row][column] = DOT_O;
+                    map[row][column] = DOT_EMPTY;
                 }
             }
         }
-
-
-        if (human_win) {
-            int row2;
-            int column2;
+        if(!human_WIN){
             do {
-                row2 = random.nextInt(SIZE);
-                column2 = random.nextInt(SIZE);
-            } while (!validate(row2, column2));
-            System.out.format("Компьютер совершил ход в ячейку %s %s %n", row2, column2);
-            map[row2][column2] = DOT_O;
-        }
-    }*/
+                row = random.nextInt(SIZE);
+                column = random.nextInt(SIZE);
+            } while (!validate(row, column));
+            System.out.format("Компьютер совершил ход в ячейку %s %s %n", row, column);
+            map[row][column] = DOT_O;
+    }
 
-
+    }
 }
-
-
- /*
-    */
 
 
