@@ -1,16 +1,6 @@
 package Lesson5;
 
-public void printEmployees() {
-        for (int i = 0; i < employeesArray.length; i++) {
-        if (employeesArray[i].getAge() > 40)
-        System.out.println("Name: " + employeesArray[i].getName() + "\n"
-        + "employment: " + employeesArray[i].getEmployment() + "\n"
-        + "email: " + employeesArray[i].getEmail() + "\n"
-        + "phonenumber: " + employeesArray[i].getPhonenumber() + "\n"
-        + "salary: " + employeesArray[i].getSalary() + "\n"
-        + "age: " + employeesArray[i].getAge() + "\n");
-        }
-        }
+
 public class Employee {
     private String name;
     private String employment;
@@ -29,7 +19,7 @@ public class Employee {
         this.age = age;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
