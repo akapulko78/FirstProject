@@ -2,8 +2,12 @@ package Lesson7.Animals;
 
 public class Cat extends Animal {
 
-    public Cat(int maxRunningDistance, double maxJumpingDistance) {
+
+
+    public Cat(int maxRunningDistance, double maxJumpingDistance, boolean fullness, double enoughFood) {
         super(maxRunningDistance, maxJumpingDistance);
+        this.fullness = fullness;
+        this.enoughFood = enoughFood;
     }
 
     @Override
