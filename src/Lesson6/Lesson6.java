@@ -1,5 +1,9 @@
 package Lesson6;
 
+import Lesson7.Animals.Animal;
+import Lesson7.Animals.Cat;
+import Lesson7.Animals.Dog;
+
 public class Lesson6 {
     public static void main(String[] args) {
         Animal dog1 = new Dog(400,5,1);

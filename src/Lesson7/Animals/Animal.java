@@ -1,9 +1,14 @@
-package Lesson6;
+package Lesson7.Animals;
+
+
+import Lesson7.Equipment.Plate;
 
 public abstract class Animal {
     protected final int maxRunningDistance;
 
     protected final double maxJumpingDistance;
+
+    protected double value;
 
     public Animal(int maxRunningDistance, double maxJumpingDistance) {
         this.maxRunningDistance = maxRunningDistance;
@@ -15,13 +20,20 @@ public abstract class Animal {
 
     abstract boolean jump(double height);
 
-    void animalRunning(int distance) {
+    protected boolean eat (Plate plate){
+        if (plate.getAmountOfFood()<value)
+        return  false;
+        else
+            plate.descreaseFood(value);
+    }
+
+    public void animalRunning(int distance) {
         System.out.println("run: " + run(distance));
     }
-    void animalSwimming(int distance){
+    public void animalSwimming(int distance){
         System.out.println("swim: " + swim(distance));
     }
-    void animalJumping(double height){
+    public void animalJumping(double height){
         System.out.println("jump: " + jump(height));
     }
 

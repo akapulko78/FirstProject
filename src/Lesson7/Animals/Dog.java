@@ -1,4 +1,4 @@
-package Lesson6;
+package Lesson7.Animals;
 
 public class Dog extends Animal {
     private int maxSwimmingDistance;
