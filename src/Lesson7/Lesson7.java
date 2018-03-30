@@ -35,11 +35,13 @@ public class Lesson7 {
             cat[2] = new Cat(300,3,false,15);
             cat[3] = new Cat(400,4,false,20);
             cat[4] = new Cat(500,5,false,25);
-            Plate plate = new Plate(50);
+            Plate plate = new Plate(30);
 
+            //System.out.println(cat[i].eat(plate));
             for (int i = 0; i <cat.length ; i++) {
-                System.out.println(cat[i].eat(plate));
+                cat[i].eat(plate);
+                    System.out.println("Кот " + (i + 1) + " " + "сытый:" + cat[i].fullness);
+                }
             }
 
         }
-}

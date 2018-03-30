@@ -10,6 +10,7 @@ public class Cat extends Animal {
         this.enoughFood = enoughFood;
     }
 
+
     @Override
     boolean swim(int distance) {
         return false;

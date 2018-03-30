@@ -1,5 +1,7 @@
 package Lesson7.Equipment;
 
+import Lesson7.Animals.Animal;
+import Lesson7.Animals.Cat;
 import javafx.fxml.FXML;
 
 public class Plate {
@@ -16,12 +18,13 @@ public class Plate {
     public void setAmountOfFood(double amountOfFood) {
         this.amountOfFood = amountOfFood;
     }
-'// FIXME: 29.03.2018 '
-   // public void putMoreFood(Plate plate){
-   //     setAmountOfFood(getEnoughFood - plate);
-//
 
-    public void descreaseFood(double value) {
-        amountOfFood -= value;
+
+    public void descreaseFood(double enoughFood) {
+        amountOfFood -= enoughFood;
+    }
+
+    public void putMoreFood(double enoughFood) {
+        setAmountOfFood(enoughFood);
     }
 }

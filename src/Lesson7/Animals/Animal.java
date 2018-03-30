@@ -12,11 +12,11 @@ public abstract class Animal {
         return enoughFood;
     }
 
-    protected double enoughFood;
+    public double enoughFood;
 
-    protected boolean fullness;
+    public boolean fullness;
 
-    public Animal(int maxRunningDistance, double maxJumpingDistance) {
+    Animal(int maxRunningDistance, double maxJumpingDistance) {
         this.maxRunningDistance = maxRunningDistance;
         this.maxJumpingDistance = maxJumpingDistance;
     }
@@ -27,11 +27,14 @@ public abstract class Animal {
     abstract boolean jump(double height);
 
     public boolean eat(Plate plate){
-        if (plate.getAmountOfFood()< enoughFood)
-        return  false;
-        else
+        if (plate.getAmountOfFood()< enoughFood) {
+            return false;
+        }
+        else {
             plate.descreaseFood(enoughFood);
-        return true;
+            fullness = true;
+            return true;
+        }
     }
 
 
