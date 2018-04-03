@@ -1,7 +1,7 @@
 package Lesson4;
 
 
-import Lesson8.XOWindow;
+
 
 import java.util.Random;
 import java.util.Scanner;
@@ -22,7 +22,6 @@ public class Lesson4 {
     private static int emptyFields;
 
     public static void main(String[] args) {
-        new XOWindow().setVisible(true);
         initMap();
         game();
     }

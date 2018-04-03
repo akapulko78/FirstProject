@@ -9,13 +9,15 @@ import java.awt.event.MouseEvent;
 
 public class MyWindow extends JFrame {
     public MyWindow() {
+        char DOT_EMPTY = '.';
         setTitle("Test Window");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(300, 300, 400, 400);
         JButton[] jbs = new JButton[5];
         for (int i = 0; i < 5; i++) {
-            jbs[i] = new JButton("#" + i);
+            jbs[i] = new JButton(String.valueOf(DOT_EMPTY));
         }
+
         setLayout(new BorderLayout());
         add(jbs[0], BorderLayout.EAST);
         add(jbs[1], BorderLayout.WEST);
@@ -24,14 +26,14 @@ public class MyWindow extends JFrame {
         add(jbs[4], BorderLayout.CENTER);
         JButton button = jbs[4];
 
-        MenuBar menuBar = new MenuBar();
+     /*   MenuBar menuBar = new MenuBar();
         menuBar.add(new Menu("File"));
         setMenuBar(menuBar);
 
         JMenuBar jmenuBar = new JMenuBar();
         jmenuBar.add(new JMenu("JFile"));
         setJMenuBar(jmenuBar);
-
+*/
         button.setToolTipText("smart button");
         jbs[1].setToolTipText("another example");
 
@@ -50,7 +52,10 @@ public class MyWindow extends JFrame {
     private void processClick(ActionEvent e) {
         JButton button = (JButton) e.getSource();
         System.out.println("Click " + button.getToolTipText());
+        button.setText("X");
+        System.out.println(button.getText());
     }
+
 
 
     public static void main(String[] args) {

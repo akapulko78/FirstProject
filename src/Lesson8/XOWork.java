@@ -1,28 +1,55 @@
+/*
 package Lesson8;
 
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.Random;
 import java.util.Scanner;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import Lesson8.XOWork;
+
+
 
 public class XOWork {
 
-    private static Scanner scanner = new Scanner(System.in);
+  //  private static Scanner scanner = new Scanner(System.in);
     private static Random random = new Random();
 
     private static final int SIZE = 5;
     private static final int DOT_TO_WIN = 4;
-    private static final char DOT_EMPTY = '.';
+    private static char DOT_EMPTY = '.';
     private static final char DOT_X = 'X';
     private static final char DOT_O = 'O';
     private static final char[] players = new char[]{DOT_X, DOT_O};
 
-    private static char[][] map;
+   // private static char[][] map;
     private static int emptyFields;
 
     public static void main(String[] args) {
         new XOWindow().setVisible(true);
-        initMap();
+        //initMap();
         game();
+    }
+
+    static class XOWindow extends JFrame {
+        XOWindow() {
+            setTitle("Крестики,нолики");
+            setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            setBounds(300, 300, 400, 400);
+            JButton[] jbs = new JButton[25];
+            setLayout(new GridLayout(5, 5));
+            for (int i = 0; i < jbs.length; i++) {
+                jbs[i] = new JButton(String.valueOf(DOT_EMPTY));
+                add(jbs[i]);
+            }
+            for (int i = 0; i < jbs.length; i++) {
+                jbs[i].addActionListener(e -> System.out.println("Button pressed..."));
+            }
+        }
     }
 
     private static void game() {
@@ -51,21 +78,23 @@ public class XOWork {
             default:
                 System.out.println("Неизвестный игрок");
         }
-        printMap();
+        //printMap();
         --emptyFields;
         return haswinner(value);
     }
 
-   /* private static void printMap() {
+ private static void printMap() {
         for (char[] row : map) {
             for (char item : row) {
                 System.out.print(" " + item);
             }
             System.out.println();
         }
-    }*/
+    }
 
-   /* private static void initMap() {
+
+
+private static void initMap() {
         map = new char[SIZE][SIZE];
         emptyFields = SIZE * SIZE;
         for (int row = 0; row < map.length; row++) {
@@ -75,7 +104,9 @@ public class XOWork {
             }
             System.out.println();
         }
-    }*/
+    }
+
+
 
     private static boolean isFilled() {
         return emptyFields <= 0;
@@ -212,15 +243,15 @@ public class XOWork {
     }
 
     private static void humanStep() {
-        int row;
-        int column;
+      //  int row;
+      //  int column;
         do {
             System.out.println("Введите значение строки и столбца," +
                     " в которые вы хотите сходить ([1,3])");
-            row = scanner.nextInt() - 1;
-            column = scanner.nextInt() - 1;
+            //row = scanner.nextInt() - 1;
+            //column = scanner.nextInt() - 1;
         } while (!validate(row, column));
-        map[row][column] = DOT_X;
+      //  map[row][column] = DOT_X;
     }
 
     private static void aiStep() {
@@ -254,3 +285,4 @@ public class XOWork {
 }
 
 
+*/
