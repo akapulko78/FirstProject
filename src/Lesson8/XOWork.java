@@ -1,12 +1,10 @@
-package Lesson4;
+package Lesson8;
 
-
-import Lesson8.XOWindow;
 
 import java.util.Random;
 import java.util.Scanner;
 
-public class Lesson4 {
+public class XOWork {
 
     private static Scanner scanner = new Scanner(System.in);
     private static Random random = new Random();
@@ -58,16 +56,16 @@ public class Lesson4 {
         return haswinner(value);
     }
 
-    private static void printMap() {
+   /* private static void printMap() {
         for (char[] row : map) {
             for (char item : row) {
                 System.out.print(" " + item);
             }
             System.out.println();
         }
-    }
+    }*/
 
-    private static void initMap() {
+   /* private static void initMap() {
         map = new char[SIZE][SIZE];
         emptyFields = SIZE * SIZE;
         for (int row = 0; row < map.length; row++) {
@@ -77,7 +75,7 @@ public class Lesson4 {
             }
             System.out.println();
         }
-    }
+    }*/
 
     private static boolean isFilled() {
         return emptyFields <= 0;
