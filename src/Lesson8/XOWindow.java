@@ -55,14 +55,15 @@ public class XOWindow extends JFrame {
 
         int preStep = random.nextInt(25);
 
-        while (!(jbs[preStep].getText().isEmpty())) {
-            if (preStep >= 25) {
+        if (!(jbs[preStep].getText().isEmpty())) {
+            if (preStep >= jbs.length - 1) {
                 preStep = 1;
             }
             preStep++;
+        } else {
+            jbs[preStep].setText(DOT_O);
+            emptyFields--;
         }
-        jbs[preStep].setText(DOT_O);
-        emptyFields--;
     }
 
     public static void main(String[] args) {
