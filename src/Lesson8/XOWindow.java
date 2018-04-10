@@ -6,11 +6,13 @@ import java.awt.event.ActionEvent;
 import java.util.Random;
 
 public class XOWindow extends JFrame {
-    private static final char DOT_X = 'X';
-    private static final char DOT_O = 'O';
+    private static final String DOT_X = "X";
+    private static final String DOT_O = "O";
     private static Random random = new Random();
+    private static int emptyFields = 25;
 
-    public XOWindow() {
+
+    private XOWindow() {
         setTitle("Крестики,нолики");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(300, 300, 400, 400);
@@ -20,34 +22,57 @@ public class XOWindow extends JFrame {
             jbs[i] = new JButton();
             add(jbs[i]);
         }
-        for (int i = 0; i <jbs.length ; i++) {
-            jbs[i].addActionListener(e -> System.out.println("Ход совершен"));
+        while (true) {
+            if (isFilled()) {
+                System.out.println("Ничья");
+                return;
+            } else {
+                clickHuman(jbs);
+                clickComputer(jbs);
+            }
         }
-        for (int i = 0; i <jbs.length ; i++) {
-            if(!jbs[i].getText().equals(String.valueOf(DOT_O)))
-                jbs[i].addActionListener(this::processClickHuman);
-            else
-                jbs[i].addActionListener(this::processClickComputer);
-        }
-
     }
 
     private void processClickHuman(ActionEvent e) {
         JButton button = (JButton) e.getSource();
-       // System.out.println("Click " + button.getToolTipText());
-        button.setText("X");
+        button.setText(DOT_X);
+        emptyFields--;
+        System.out.println(emptyFields);
+        // System.out.println("Click " + button.getToolTipText());
+
         //System.out.println(button.getText());
     }
-    private void processClickComputer(ActionEvent e) {
-        JButton button = (JButton) e.getSource();
-        // System.out.println("Click " + button.getToolTipText());
-        button.setText("O");
-        //System.out.println(button.getText());
+
+    private void clickHuman(JButton[] jbs) {
+        for (int i = 0; i < jbs.length; i++) {
+            if (jbs[i].getText().isEmpty())
+                jbs[i].addActionListener(this::processClickHuman);
+            jbs[i].addActionListener(e -> System.out.println("Ход совершен"));
+        }
+    }
+
+    private static void clickComputer(JButton[] jbs) {
+
+        int preStep = random.nextInt(25);
+
+        while (!(jbs[preStep].getText().isEmpty())) {
+            if (preStep >= 25) {
+                preStep = 1;
+            }
+            preStep++;
+        }
+        jbs[preStep].setText(DOT_O);
+        emptyFields--;
     }
 
     public static void main(String[] args) {
         new XOWindow().setVisible(true);
     }
+
+    private static boolean isFilled() {
+        return emptyFields <= 0;
+    }
 }
 
-//Пока успел реализовать только ход человека, остальное - в процессе написания.
+
+
